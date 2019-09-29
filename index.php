@@ -57,6 +57,8 @@ if (isset($_POST['upload'])) {
         $createContainerOptions->addMetaData("key2", "value2");
         $container = "submissioncontainer".generateRandomString();
         $blobClient->createContainer($container, $createContainerOptions);
+
+        var_dump($blobClient);
     } catch (Exception $e){
         echo $e;
     }
@@ -83,6 +85,7 @@ if (isset($_POST['upload'])) {
         $file = $_FILES['image']['name'];
         move_uploaded_file($file,$targetFile);
         $fileToUpload = "upload/".$files.".".$imageFileType;
+        var_dump($fileToUpload);
         $content = fopen($fileToUpload,"r") or die("Error");
         $blobClient->createBlockBlob($container, $file, $content);
         $listBlobsOptions = new ListBlobsOptions();
