@@ -36,6 +36,7 @@
     </div>
 <?php
 require_once 'vendor/autoload.php';
+require_once "./random_string.php";
 
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
 use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
@@ -56,7 +57,8 @@ try {
     echo $e;
 }
 
-$container = "submissioncontainer";
+$container = "submissioncontainer".generateRandomString();
+$blobClient->createContainer($container, $createContainerOptions);
 
 if (isset($_POST['upload'])) {
     
