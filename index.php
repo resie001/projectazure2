@@ -63,7 +63,7 @@ if (isset($_POST['upload'])) {
         $blobClient->createContainer($container, $createContainerOptions);
 
         var_dump($blobClient);
-    } catch (Exception $e){
+    } catch (ServiceException $e){
         echo $e;
     }
     
