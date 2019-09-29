@@ -43,14 +43,18 @@ use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
 use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
 use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 
-$connectionString = "DefaultEndpointsProtocol=https;AccountName=azuresecondstorage;AccountKey=GdwiugSHn3wqyXonNKtoRmdkXem+91/UAwdJGI7UA6IpC4iNYcv7+Qq2e+XCT4N6nw1nUuA4OXb9nu5069CEuQ==";
+try {
+    $connectionString = "DefaultEndpointsProtocol=https;AccountName=azuresecondstorage;AccountKey=GdwiugSHn3wqyXonNKtoRmdkXem+91/UAwdJGI7UA6IpC4iNYcv7+Qq2e+XCT4N6nw1nUuA4OXb9nu5069CEuQ==";
 
-$blobClient = BlobRestProxy::createBlobService($connectionString);
+    $blobClient = BlobRestProxy::createBlobService($connectionString);
 
-$createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
+    $createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
 
-$createContainerOptions->addMetaData("key1", "value1");
-$createContainerOptions->addMetaData("key2", "value2");
+    $createContainerOptions->addMetaData("key1", "value1");
+    $createContainerOptions->addMetaData("key2", "value2");
+} catch (Exception $e){
+    echo $e;
+}
 
 $container = "submissioncontainer";
 
@@ -78,7 +82,7 @@ if (isset($_POST['upload'])) {
         $file = $_FILES['image']['name'];
         move_uploaded_file($file,$targetFile);
         $fileToUpload = "upload/".$files.".".$imageFileType;
-        $content = fopen($fileToUpload,"r");
+        $content = fopen($fileToUpload,"r") or die("Error");
         $blobClient->createBlockBlob($container, $file, $content);
     }
 
