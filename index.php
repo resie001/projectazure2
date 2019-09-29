@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Submission 2 Microsoft Azure</title>
     <script src="jquery-3.4.1.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     <style>
         body {
             padding: 16px;
@@ -34,6 +34,10 @@
     <div class="preview">
         <img src="" id="img" alt="your image" width="250px" height="250px">
     </div>
+
+</body>
+</html>
+
 <?php
 require_once 'vendor/autoload.php';
 require_once "./random_string.php";
@@ -95,5 +99,3 @@ if (isset($_POST['upload'])) {
 }
 
 ?>
-</body>
-</html>
