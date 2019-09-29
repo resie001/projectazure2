@@ -1,0 +1,10 @@
+{
+    "name": "microsoft/azure-storage",
+    "description": "This project provides a set of PHP client libraries that make it easy to access Microsoft Azure storage APIs.",
+    "require": {
+      "microsoft/azure-storage-blob": "*",
+      "microsoft/azure-storage-table": "*",
+      "microsoft/azure-storage-queue": "*",
+      "microsoft/azure-storage-file": "*"
+    }
+}
