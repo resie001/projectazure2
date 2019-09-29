@@ -44,23 +44,22 @@ use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
 use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
 use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 
-try {
-    $connectionString = "DefaultEndpointsProtocol=https;AccountName=azuresecondstorage;AccountKey=GdwiugSHn3wqyXonNKtoRmdkXem+91/UAwdJGI7UA6IpC4iNYcv7+Qq2e+XCT4N6nw1nUuA4OXb9nu5069CEuQ==;EndpointSuffix=core.windows.net";
-
-    $blobClient = BlobRestProxy::createBlobService($connectionString);
-
-    $createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
-
-    $createContainerOptions->addMetaData("key1", "value1");
-    $createContainerOptions->addMetaData("key2", "value2");
-} catch (Exception $e){
-    echo $e;
-}
-
-$container = "submissioncontainer".generateRandomString();
-$blobClient->createContainer($container, $createContainerOptions);
-
 if (isset($_POST['upload'])) {
+
+    try {
+        $connectionString = "DefaultEndpointsProtocol=https;AccountName=azuresecondstorage;AccountKey=GdwiugSHn3wqyXonNKtoRmdkXem+91/UAwdJGI7UA6IpC4iNYcv7+Qq2e+XCT4N6nw1nUuA4OXb9nu5069CEuQ==;EndpointSuffix=core.windows.net";
+    
+        $blobClient = BlobRestProxy::createBlobService($connectionString);
+    
+        $createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
+    
+        $createContainerOptions->addMetaData("key1", "value1");
+        $createContainerOptions->addMetaData("key2", "value2");
+        $container = "submissioncontainer".generateRandomString();
+        $blobClient->createContainer($container, $createContainerOptions);
+    } catch (Exception $e){
+        echo $e;
+    }
     
     $uploadOk = 1;
     $fileName = $_FILES['file']['name'];
