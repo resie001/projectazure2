@@ -84,6 +84,8 @@ if (isset($_POST['upload'])) {
         $fileToUpload = "upload/".$files.".".$imageFileType;
         $content = fopen($fileToUpload,"r") or die("Error");
         $blobClient->createBlockBlob($container, $file, $content);
+        $listBlobsOptions = new ListBlobsOptions();
+        $listBlobsOptions->setPrefix($fileName);
     }
 
 }
