@@ -43,7 +43,8 @@ use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
 use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
 use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 
-$connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('account_name').";AccountKey=".getenv('account_key');
+$connectionString = "DefaultEndpointsProtocol=https;AccountName=azuresecondstorage;AccountKey=GdwiugSHn3wqyXonNKtoRmdkXem+91/UAwdJGI7UA6IpC4iNYcv7+Qq2e+XCT4N6nw1nUuA4OXb9nu5069CEuQ==";
+
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 
 $createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
