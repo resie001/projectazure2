@@ -52,7 +52,7 @@ if (isset($_POST['upload'])) {
 
     try {
         $connectionString = "DefaultEndpointsProtocol=https;AccountName=azuresecondstorage;AccountKey=GdwiugSHn3wqyXonNKtoRmdkXem+91/UAwdJGI7UA6IpC4iNYcv7+Qq2e+XCT4N6nw1nUuA4OXb9nu5069CEuQ==;EndpointSuffix=core.windows.net";
-    
+        echo "mbarang";
         $blobClient = BlobRestProxy::createBlobService($connectionString);
     
         $createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
