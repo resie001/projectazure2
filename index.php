@@ -60,27 +60,23 @@ if (isset($_POST['upload'])) {
         $container = "submissioncontainer";
         // $blobClient->createContainer($container, $createContainerOptions);
 
-        var_dump($blobClient);
+        $fileName = $_FILES['file']['name'];
+        $imageFileType = pathinfo($fileName,PATHINFO_EXTENSION);
+
+        $targetDir = "upload/";
+        $targetFile = $targetDir.basename($_FILES['image']['name']);
+        $file = $_FILES['image']['name'];
+        move_uploaded_file($file,$targetFile);
+        $fileToUpload = "upload/".$files.".".$imageFileType;
+        $content = fopen($fileToUpload,"r") or die("Error");
+        $blobClient->createBlockBlob($container, $file, $content);
+        $listBlobsOptions = new ListBlobsOptions();
+        $listBlobsOptions->setPrefix($fileName);
     } catch (ServiceException $e){
         echo $e;
     }
     
-    $fileName = $_FILES['file']['name'];
-    $imageFileType = pathinfo($fileName,PATHINFO_EXTENSION);
-
-    $targetDir = "upload/";
-    $targetFile = $targetDir.basename($_FILES['image']['name']);
-    $file = $_FILES['image']['name'];
-    move_uploaded_file($file,$targetFile);
-    $fileToUpload = "upload/".$files.".".$imageFileType;
-    var_dump($fileToUpload);
-    $content = fopen($fileToUpload,"r") or die("Error");
-    $blobClient->createBlockBlob($container, $file, $content);
-    $listBlobsOptions = new ListBlobsOptions();
-    $listBlobsOptions->setPrefix($fileName);
-    var_dump($content);
-    var_dump($fileToUpload);
-    var_dump($blobClient);
+    
 
 }
 
