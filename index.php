@@ -40,7 +40,6 @@
 
 <?php
 require_once 'vendor/autoload.php';
-require_once "./random_string.php";
 
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
 use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
@@ -59,8 +58,8 @@ if (isset($_POST['upload'])) {
     
         $createContainerOptions->addMetaData("key1", "value1");
         $createContainerOptions->addMetaData("key2", "value2");
-        $container = "submissioncontainer".generateRandomString();
-        $blobClient->createContainer($container, $createContainerOptions);
+        // $container = "submissioncontainer".generateRandomString();
+        // $blobClient->createContainer($container, $createContainerOptions);
 
         var_dump($blobClient);
     } catch (ServiceException $e){
