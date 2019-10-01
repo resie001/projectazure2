@@ -51,7 +51,6 @@ if (isset($_POST['upload'])) {
 
     try {
         $connectionString = "DefaultEndpointsProtocol=https;AccountName=azuresecondstorage;AccountKey=GdwiugSHn3wqyXonNKtoRmdkXem+91/UAwdJGI7UA6IpC4iNYcv7+Qq2e+XCT4N6nw1nUuA4OXb9nu5069CEuQ==;EndpointSuffix=core.windows.net";
-        echo "mbarang";
         $blobClient = BlobRestProxy::createBlobService($connectionString);
     
         $createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
@@ -66,37 +65,22 @@ if (isset($_POST['upload'])) {
         echo $e;
     }
     
-    $uploadOk = 1;
     $fileName = $_FILES['file']['name'];
     $imageFileType = pathinfo($fileName,PATHINFO_EXTENSION);
-    $validExtension = array("jpg","jpeg","png");
 
-    if ($_FILES["image"]["size"] > 4000000) {
-        echo "<p>Size Gambar tidak boleh melebihi 4 mb</p>";
-        $uploadOk = 0;
-    }
-
-    if (!in_array(strtolower($imageFileType),$validExtension)) {
-        $uploadOk = 0;
-    }
-
-    if ($uploadOK == 0) {
-        echo 0;
-    } else {
-        $targetDir = "upload/";
-        $targetFile = $targetDir.basename($_FILES['image']['name']);
-        $file = $_FILES['image']['name'];
-        move_uploaded_file($file,$targetFile);
-        $fileToUpload = "upload/".$files.".".$imageFileType;
-        var_dump($fileToUpload);
-        $content = fopen($fileToUpload,"r") or die("Error");
-        $blobClient->createBlockBlob($container, $file, $content);
-        $listBlobsOptions = new ListBlobsOptions();
-        $listBlobsOptions->setPrefix($fileName);
-        var_dump($content);
-        var_dump($fileToUpload);
-        var_dump($blobClient);
-    }
+    $targetDir = "upload/";
+    $targetFile = $targetDir.basename($_FILES['image']['name']);
+    $file = $_FILES['image']['name'];
+    move_uploaded_file($file,$targetFile);
+    $fileToUpload = "upload/".$files.".".$imageFileType;
+    var_dump($fileToUpload);
+    $content = fopen($fileToUpload,"r") or die("Error");
+    $blobClient->createBlockBlob($container, $file, $content);
+    $listBlobsOptions = new ListBlobsOptions();
+    $listBlobsOptions->setPrefix($fileName);
+    var_dump($content);
+    var_dump($fileToUpload);
+    var_dump($blobClient);
 
 }
 
