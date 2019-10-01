@@ -93,6 +93,9 @@ if (isset($_POST['upload'])) {
         $blobClient->createBlockBlob($container, $file, $content);
         $listBlobsOptions = new ListBlobsOptions();
         $listBlobsOptions->setPrefix($fileName);
+        var_dump($content);
+        var_dump($fileToUpload);
+        var_dump($blobClient);
     }
 
 }
